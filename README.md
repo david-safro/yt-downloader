@@ -1,3 +1,3 @@
-## Youtube video downloader
+# Youtube video downloader
 made by me
-# availible at my website [yt.safro.dev](https://yt.safro.dev)
+## availible at my website [yt.safro.dev](https://yt.safro.dev)
