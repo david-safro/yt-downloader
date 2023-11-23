@@ -3,7 +3,10 @@ import ytdl from 'ytdl-core';
 export async function GET({ url: { searchParams } }) {
     try {
         const url = searchParams.get('url');
-        const info = await ytdl.getInfo(url);
+        if (!url) {
+            return new Response('URL parameter is missing', {status: 400});
+        }
+            const info = await ytdl.getInfo(url);
         let title = info.videoDetails.title.replace(/\s+/g, '_');
 
         // Sanitize the title to remove non-ASCII characters
