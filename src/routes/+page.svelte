@@ -39,7 +39,74 @@
 </script>
 
 <style>
-    /* Existing styles */
+        @import "../../static/css/global.css";
+    .button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-button, .download-button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .download-button {
+        background-color: crimson;
+        color: white;
+        border-radius: 5px;
+        animation: glowing 2s linear infinite;
+    }
+
+    .back-button {
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+    }
+
+    /* Swirling RGB animation */
+    @keyframes glowing {
+        0% { box-shadow: 0 0 10px red, 0 0 20px blue, 0 0 30px green; }
+        33% { box-shadow: 0 0 10px blue, 0 0 20px green, 0 0 30px red; }
+        66% { box-shadow: 0 0 10px green, 0 0 20px red, 0 0 30px blue; }
+        100% { box-shadow: 0 0 10px red, 0 0 20px blue, 0 0 30px green; }
+    }
+    .input-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .input-container h1, .input-container p {
+        color: #fff;
+    }
+
+    input {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 2px solid #555;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #ddd;
+        background-color: #222;
+    }
+
+    .fetch-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #444;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .fetch-button:hover {
+        background-color: #d05050;
+    }
 
     .loading-circle {
         border: 8px solid #f3f3f3;
