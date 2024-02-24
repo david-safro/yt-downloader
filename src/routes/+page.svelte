@@ -135,7 +135,7 @@
             <input type="text" bind:value={url} placeholder="Enter YouTube URL" on:keypress={handleKeyPress}>
             <button on:click={fetchVideoInfo} class="fetch-button">Get Video Info</button>
             <p>please considering <a href="https://paypal.me/davidsafro">donating</a> to me as I am broke</p>
-            <p>Also, here's the <a href="https://github.com/Glitchez-1984/yt-downloader" style="color:cadetblue">source code</a> to the website.</p>
+            <p>Also, here's the <a href="https://github.com/david-safro/yt-downloader" style="color:cadetblue">source code</a> to the website.</p>
         </div>
     {/if}
 
