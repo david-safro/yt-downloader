@@ -1,9 +1,9 @@
 <nav class="navbar">
     <div class="left"><a href="/" style="text-decoration: none; color: whitesmoke">Made by David S</a></div>
     <div class="right">
-        <a href="https://github.com/Glitchez-1984" target="_blank" class="icon-link"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg" alt="github" style="width: 40px; height: auto"/></a>
+        <a href="https://github.com/david-safro/" target="_blank" class="icon-link"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg" alt="github" style="width: 40px; height: auto"/></a>
         <a href="https://stackoverflow.com/users/13794936/david-safro" target="_blank" class="icon-link"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Stack_Overflow_icon.svg" alt="Stack Overflow" style="width: 40px; height: auto"/></a>
-        <a href="https://discord.gg/ZAjtzgBR" target="_blank" class="icon-link"><img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg" alt="discord" style="width: 40px; height: auto"/></a>
+        <a href="https://discord.com/invite/jr66n5Td" target="_blank" class="icon-link"><img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg" alt="discord" style="width: 40px; height: auto"/></a>
         <a href="https://paypal.me/davidsafro" target="_blank" class="icon-link"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/PayPal_Logo_Icon_2014.svg" alt="PayPal" style="width: 30px; height: auto"/></a>
     </div>
 </nav>
