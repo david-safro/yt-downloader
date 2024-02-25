@@ -1,11 +1,15 @@
+<!-- Main Component -->
+
 <script>
     import Selection from '../components/Selection.svelte';
+    import FinishedPage from '../components/FinishedPage.svelte';
 
     let url = '';
     let videoDetails = null;
     let title, runtime, uploader, thumbnail;
     let showInput = true;
     let isLoading = false;
+    let isDownloading = false;
 
     function handleKeyPress(event) {
         if (event.key === 'Enter') {
@@ -29,14 +33,52 @@
         }
     }
 
+    async function downloadVideo() {
+        isDownloading = true;
+        // Simulate downloading, you should replace this with your actual download logic
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        isDownloading = false;
+    }
+
     function goBack() {
         window.location.href = "/";
     }
-
-    function downloadVideo() {
-        window.location.href = `/api/download-video?url=${encodeURIComponent(url)}`;
-    }
 </script>
+
+
+{#if isLoading}
+    <div class="loading-circle"></div>
+{:else}
+    {#if showInput}
+        <div class="input-container">
+            <h1>Welcome to Youtube Downloader</h1>
+            <p>Finally, a website to download youtube videos without any ads, viruses, or other malware. Enter the URL of the YouTube video you wish to download.</p>
+            <input type="text" bind:value={url} placeholder="Enter YouTube URL" on:keypress={handleKeyPress}>
+            <button on:click={fetchVideoInfo} class="fetch-button">Get Video Info</button>
+            <p>please considering <a href="https://paypal.me/davidsafro">donating</a> to me as I am broke</p>
+            <p>Also, here's the <a href="https://github.com/Glitchez-1984/yt-downloader" style="color:cadetblue">source code</a> to the website.</p>
+        </div>
+    {/if}
+
+    {#if videoDetails && !isDownloading}
+        <Selection {title} {runtime} {uploader} {thumbnail} {url} />
+        <div class="button-container">
+            <button on:click={goBack} class="back-button">Back</button>
+            <button on:click={downloadVideo} class="download-button">
+                {#if isDownloading}
+                    <span class="download-animation"></span>
+                {:else}
+                    Download
+                {/if}
+            </button>
+        </div>
+    {/if}
+
+    {#if isDownloading}
+        <FinishedPage {videoDetails} />
+    {/if}
+{/if}
+
 
 <style>
         @import "../../static/css/global.css";
@@ -123,27 +165,19 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+
+    .download-animation {
+        display: inline-block;
+        width: 30px;
+        height: 40px;
+        background-color: #3498db;
+        margin-right: 5px;
+        animation: soundwave-animation 0.5s infinite alternate;
+    }
+
+    @keyframes soundwave-animation {
+        0% { height: 40px; }
+        100% { height: 20px; }
+    }
 </style>
 
-{#if isLoading}
-    <div class="loading-circle"></div>
-{:else}
-    {#if showInput}
-        <div class="input-container">
-            <h1>Welcome to Youtube Downloader</h1>
-            <p>Finally, a website to download youtube videos without any ads, viruses, or other malware. Enter the URL of the YouTube video you wish to download.</p>
-            <input type="text" bind:value={url} placeholder="Enter YouTube URL" on:keypress={handleKeyPress}>
-            <button on:click={fetchVideoInfo} class="fetch-button">Get Video Info</button>
-            <p>please considering <a href="https://paypal.me/davidsafro">donating</a> to me as I am broke</p>
-            <p>Also, here's the <a href="https://github.com/david-safro/yt-downloader" style="color:cadetblue">source code</a> to the website.</p>
-        </div>
-    {/if}
-
-    {#if videoDetails}
-        <Selection {title} {runtime} {uploader} {thumbnail} {url} />
-        <div class="button-container">
-            <button on:click={goBack} class="back-button">Back</button>
-            <button on:click={downloadVideo} class="download-button">Download</button>
-        </div>
-    {/if}
-{/if}
