@@ -1,6 +1,6 @@
 # Youtube video downloader
 
-source code to youtube video downloader because all the other ones are filled with ads and malware
+source code to youtube video downloader because all the other ones are filled with ads and are way too slow
 
 made by me
 
