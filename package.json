@@ -20,6 +20,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@distube/ytdl-core": "^4.15.3",
+		"youtube-dl-exec": "^3.0.10",
 		"ytdl-core": "^4.11.5"
 	}
 }
