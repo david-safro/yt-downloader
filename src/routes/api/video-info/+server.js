@@ -1,9 +1,9 @@
-import ytdl from '@distube/ytdl-core';
+import { exec } from 'youtube-dl-exec';
 
 export async function POST({ request }) {
     try {
-        // Parse the JSON body from the request
         const body = await request.json();
+
         if (!body.url) {
             return new Response(
                 JSON.stringify({ error: 'URL is required' }),
@@ -11,16 +11,36 @@ export async function POST({ request }) {
             );
         }
 
-        // Retrieve video information using ytdl from @distube/ytdl-core
-        const info = await ytdl.getBasicInfo(body.url);
+        // Validate YouTube URL
+        const youtubePatterns = [
+            /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=[\w-]+/,
+            /^(https?:\/\/)?(www\.)?youtu\.be\/[\w-]+/,
+            /^(https?:\/\/)?(www\.)?youtube\.com\/shorts\/[\w-]+/
+        ];
+
+        const isValidUrl = youtubePatterns.some(pattern => pattern.test(body.url));
+        if (!isValidUrl) {
+            return new Response(
+                JSON.stringify({ error: 'Invalid YouTube URL' }),
+                { status: 400, headers: { 'Content-Type': 'application/json' } }
+            );
+        }
+
+        // Fetch video metadata using yt-dlp
+        const info = await exec(body.url, {
+            dumpSingleJson: true,
+            noCheckCertificates: true,
+            noWarnings: true,
+            preferFreeFormats: true,
+        });
+
         const videoDetails = {
-            title: info.videoDetails.title,
-            runtime: info.videoDetails.lengthSeconds,
-            uploader: info.videoDetails.author.name,
-            thumbnail: info.videoDetails.thumbnails[info.videoDetails.thumbnails.length - 1]?.url
+            title: info.title,
+            runtime: info.duration,
+            uploader: info.uploader || info.channel || 'Unknown',
+            thumbnail: info.thumbnail,
         };
 
-        // Return a JSON response with the video details
         return new Response(JSON.stringify(videoDetails), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }
@@ -28,9 +48,8 @@ export async function POST({ request }) {
     } catch (err) {
         console.error('Error retrieving video info:', err.message);
 
-        // Send a proper JSON response for errors
         return new Response(
-            JSON.stringify({ error: 'Error retrieving video info', details: err.message }),
+            JSON.stringify({ error: 'Failed to fetch video information. Please check the URL and try again.' }),
             { status: 500, headers: { 'Content-Type': 'application/json' } }
         );
     }

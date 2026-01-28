@@ -1,6 +1,6 @@
 {
-	"name": "yt",
-	"version": "0.0.1",
+	"name": "yt-downloader",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
@@ -20,8 +20,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@distube/ytdl-core": "^4.15.3",
-		"youtube-dl-exec": "^3.0.10",
-		"ytdl-core": "^4.11.5"
+		"youtube-dl-exec": "^3.0.10"
 	}
 }
